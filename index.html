@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Greeting Cards</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .card {
+            border: 2px solid #ccc;
+            padding: 20px;
+            margin: 10px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 300px;
+        }
+
+        .greeting {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .name {
+            font-size: 20px;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+    <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        const { useState } = React;
+
+        const GreetingCard = ({ greeting, name }) => {
+            return (
+                <div className="card">
+                    <div className="greeting">{greeting}</div>
+                    <div className="name">{name}</div>
+                </div>
+            );
+        };
+
+        const App = () => {
+            const [cards] = useState([
+                { greeting: 'Happy Birthday', name: 'John Doe' },
+                { greeting: 'Merry Christmas', name: 'Jane Smith' },
+                { greeting: 'Happy New Year', name: 'Alice Johnson' },
+                { greeting: 'Happy Anniversary', name: 'Bob Brown' },
+            ]);
+
+            return (
+                <div>
+                    {cards.map((card, index) => (
+                        <GreetingCard key={index} greeting={card.greeting} name={card.name} />
+                    ))}
+                </div>
+            );
+        };
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+</body>
+
+</html>
